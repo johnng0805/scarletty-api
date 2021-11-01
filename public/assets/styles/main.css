@@ -9,24 +9,40 @@ body {
     padding: 1em;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     width: 100%;
 }
 
-.wrapper {
+.card__wrapper {
     padding: 1.5em;
     border: 1px solid black;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
+    height: fit-content;
+    max-height: 90vh;
+    width: 100%;
 }
 
-.wrapper * {
-    margin: 0;
+.card__wrapper table {
+    width: 100%;
+    margin-top: 1em;
 }
 
-.wrapper h4 {
-    margin-right: 2em;
+.card__wrapper table th {
+    border: 1px solid #2B0014;
+    padding: 0.5em;
+    background-color: #FDAB9F;
+    color: #2B0014;
+}
+
+.card__wrapper table th:nth-child(1) {
+    width: 80px;
+    text-align: center;
+}
+
+.card__wrapper table td {
+    border: 1px solid #2B0014;
+    background-color: #FFF5EE;
+    padding: 0.5em;
+    color: #2B0014;
 }
 
 .admin__header {
