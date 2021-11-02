@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Payment_Info.init({
     user_id: DataTypes.INTEGER,
-    type: DataTypes.ENUM,
+    type: DataTypes.ENUM("Visa", "Cash"),
     provider: DataTypes.STRING,
     account_no: DataTypes.STRING,
     expiry: DataTypes.DATE
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     Payment_Info.belongsTo(models.User, {
       foreignKey: "user_id"
     });
-    Payment_Info.belongsToMany(models.Order);
+    Payment_Info.hasMany(models.Order);
   }
   return Payment_Info;
 };

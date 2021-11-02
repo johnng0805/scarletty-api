@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Billing_Info.init({
-    user_id: DataTypes.INTERGER,
+    user_id: DataTypes.INTEGER,
     address_1: DataTypes.STRING,
     address_2: DataTypes.STRING,
     city: DataTypes.STRING,

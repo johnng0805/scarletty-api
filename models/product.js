@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "cascade"
     });
     Product.belongsTo(models.Vendor);
-    Product.belongsToMany(models.Product_Category);
+    Product.belongsToMany(models.Category, { through: models.Product_Category });
     Product.hasMany(models.Product_Image, {
       onDelete: "cascade"
     });
