@@ -3,18 +3,49 @@ block content
     div(class="page__content")
         div(class="card__wrapper")
             h4 All products 
-            table
-                thead 
-                    tr 
-                        th ID
-                        th Name 
-                        th Price 
-                        th Quantity
-                tbody 
-                    tr 
-                        td 1
-                        td Product 1
-                        td $5.99
-                        td 10
+            div(class="table__wrapper")
+                table
+                    thead 
+                        tr 
+                            th ID
+                            th Name 
+                            th Category
+                            th Price 
+                            th Quantity
+                    tbody
+                        tr 
+                            td 1
+                            td
+                                div(class="product__td__wrapper")
+                                    div(class="product__td__img")
+                                        img(src="/static/assets/images/product.png", alt="")
+                                    | Product 1
+                            td Category 1
+                            td $5.99
+                            td 10
+        div(class="card__wrapper")
+            h4 All orders
+            div(class="table__wrapper")
+                table 
+                    thead 
+                        tr 
+                            th ID 
+                            th User 
+                            th Product 
+                            th Total 
+                            th Address 
+                    tbody 
+                        tr 
+                            td 1
+                            td abc@gmail.com
+                            td Product 1
+                            td 2.000.000
+                            td 414 Huynh Van Banh, P.14, Q.Phu Nhuan
+        
+                        
+                        
+                        
+                    
+                    
             
             

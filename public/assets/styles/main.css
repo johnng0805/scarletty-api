@@ -8,8 +8,9 @@ body {
 .page__content {
     padding: 1em;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
+    overflow: auto;
 }
 
 .card__wrapper {
@@ -19,18 +20,31 @@ body {
     height: fit-content;
     max-height: 90vh;
     width: 100%;
+    margin-bottom: 1em;
+}
+
+.max-h-100 {
+    max-height: 100vh;
+}
+
+.table__wrapper {
+    max-height: 70vh;
+    margin-top: 1em;
+    overflow: auto;
 }
 
 .card__wrapper table {
     width: 100%;
-    margin-top: 1em;
 }
 
 .card__wrapper table th {
     border: 1px solid #2B0014;
+    border-collapse: collapse;
     padding: 0.5em;
     background-color: #FDAB9F;
     color: #2B0014;
+    position: sticky;
+    top: -1;
 }
 
 .card__wrapper table th:nth-child(1) {
@@ -38,11 +52,27 @@ body {
     text-align: center;
 }
 
+.card__wrapper table tbody {
+    width: 100%;
+    overflow-y: scroll;
+}
+
 .card__wrapper table td {
     border: 1px solid #2B0014;
+    border-collapse: collapse;
     background-color: #FFF5EE;
     padding: 0.5em;
     color: #2B0014;
+}
+
+.card__wrapper table td:nth-child(1) {
+    text-align: center;
+}
+
+.tbody__wrapper {
+    height: 500px;
+    width: 100%;
+    overflow: auto;
 }
 
 .admin__header {
@@ -110,4 +140,24 @@ body {
 
 .admin__nav li:hover {
     background-color: #FFF5EE;
+}
+
+.product__td__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.product__td__img {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 0.5em;
+}
+
+.product__td__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

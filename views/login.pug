@@ -1,0 +1,20 @@
+extend login-layout.pug 
+block content 
+    div(class="login__container")
+        div(class="login__wrapper")
+            div(class="login__title")
+                h3 Scarletty Admin 
+                h4 Login
+            div(class="login__form")
+                form(action="/login" method="POST" id="loginForm")
+                    div(class="form-floating mb-4")
+                        input(type="email" class="form-control" id="login__emailInput" placeholder="abc@example.com" name="email")
+                        label(for="login__emailInput") Email:
+                    div(class="form-floating")
+                        input(type="password" class="form-control" id="login__passwordInput" placeholder="password" name="password")
+                        label(for="login__passwordInput") Password:
+            if error
+                div(class="alert alert-danger" role="alert")
+                    | #{error}
+            div(class="login__button")
+                input(type="submit" form="loginForm" value="Login")
