@@ -3,7 +3,10 @@ const dotenv = require("dotenv");
 const path = require("path");
 const db = require("./config/db");
 const session = require("express-session");
-const Admin = require("./models").Admin;
+/*---Controllers---*/
+const AdminController = require("./controllers/AdminController");
+const UserController = require("./controllers/UserController");
+/*-----------------*/
 const { body, validationResult } = require("express-validator");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
@@ -45,43 +48,7 @@ app.get("/", checkLoggedIn, (req, res) => {
 app.get("/login", (req, res) => {
     res.render("login");
 });
-
-app.post("/login",
-    body("email").isEmail().normalizeEmail(),
-    body("password").notEmpty().isAlphanumeric(),
-    async function (req, res) {
-        const err = validationResult(req);
-        console.log(req.body);
-        if (!err.isEmpty()) {
-            return res.sendStatus(400);
-        }
-
-        const { email, password } = req.body;
-        try {
-            const admin = await Admin.findOne({
-                where: {
-                    email: email
-                }
-            });
-
-            if (admin) {
-                if (bcrypt.compareSync(password, admin.password)) {
-                    req.session.loggedIn = true;
-                    res.redirect("/");
-                } else {
-                    res.status(403).render("/login", {
-                        error: "Email or password incorrect."
-                    });
-                }
-            } else {
-                res.status(404).render("login", {
-                    error: "Email or password incorrect."
-                });
-            }
-        } catch (err) {
-            console.log(err);
-            res.sendStatus(500);
-        }
-    });
-
-// app.use("/login", UserController);
+/*---Admin's Routes---*/
+app.use("/admin", AdminController);
+/*---User's Routes---*/
+app.use("/user", UserController);

@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     Cart_Item.hasOne(models.Product, {
       onDelete: "cascade"
     });
+    // Cart_Item.belongsToMany(models.Cart, { through: models.CartItems })
   }
   return Cart_Item;
 };

@@ -33,8 +33,9 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "cascade"
     });
     User.hasOne(models.Cart, {
-      onDelete: "cascade"
-    });
+      onDelete: "cascade",
+      hooks: true
+    })
   };
   return User;
 };
