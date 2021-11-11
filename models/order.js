@@ -23,11 +23,10 @@ module.exports = (sequelize, DataTypes) => {
   });
   Order.associate = (models) => {
     Order.belongsTo(models.User, {
-      foreignKey: "user_id"
+      foreignKey: "user_id",
+      onDelete: "CASCADE"
     });
-    Order.hasMany(models.Order_Item, {
-      onDelete: "cascade"
-    });
+    Order.hasMany(models.Order_Item);
     Order.hasOne(models.Payment_Info, {
       foreignKey: "payment_id"
     });

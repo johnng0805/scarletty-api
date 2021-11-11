@@ -22,13 +22,14 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Cart_Item',
   });
   Cart_Item.associate = (models) => {
-    Cart_Item.belongsTo(models.Order, {
-      foreignKey: "order_id"
+    Cart_Item.belongsTo(models.Cart, {
+      foreignKey: "cart_id",
+      onDelete: "CASCADE"
     });
-    Cart_Item.hasOne(models.Product, {
-      onDelete: "cascade"
+    Cart_Item.belongsTo(models.Product, {
+      foreignKey: "product_id",
+      onDelete: "CASCADE"
     });
-    // Cart_Item.belongsToMany(models.Cart, { through: models.CartItems })
   }
   return Cart_Item;
 };

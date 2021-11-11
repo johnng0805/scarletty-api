@@ -25,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
   });
   Payment_Info.associate = (models) => {
     Payment_Info.belongsTo(models.User, {
-      foreignKey: "user_id"
+      foreignKey: "user_id",
+      onDelete: "CASCADE"
     });
     Payment_Info.hasMany(models.Order);
   }

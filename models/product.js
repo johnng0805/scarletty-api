@@ -25,14 +25,16 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Product',
   });
   Product.associate = (models) => {
-    Product.belongsTo(models.Cart_Item, {
-      onDelete: "cascade"
+    Product.hasMany(models.Cart_Item);
+    Product.hasMany(models.Order_Item);
+    Product.belongsTo(models.Vendor, {
+      foreignKey: "vendor_id",
+      onDelete: "CASCADE"
     });
-    Product.belongsTo(models.Order_Item, {
-      onDelete: "cascade"
+    Product.belongsToMany(models.Category, {
+      foreignKey: "product_id",
+      through: models.Product_Category
     });
-    Product.belongsTo(models.Vendor);
-    Product.belongsToMany(models.Category, { through: models.Product_Category });
     Product.hasMany(models.Product_Image, {
       onDelete: "cascade"
     });

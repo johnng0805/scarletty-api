@@ -11,6 +11,7 @@ module.exports = {
       vendor_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
         references: {
           model: "Vendors",
           key: "id"

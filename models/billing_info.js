@@ -28,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
   });
   Billing_Info.associate = (models) => {
     Billing_Info.belongsTo(models.User, {
-      foreignKey: "user_id"
+      foreignKey: "user_id",
+      onDelete: "CASCADE"
     });
   };
   return Billing_Info;

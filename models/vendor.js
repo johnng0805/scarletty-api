@@ -23,9 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Vendor',
   });
   Vendor.associate = (models) => {
-    Vendor.hasMany(models.Product, {
-      onDelete: "cascade"
-    });
+    Vendor.hasMany(models.Product);
   }
   return Vendor;
 };
