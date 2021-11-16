@@ -6,6 +6,8 @@ const session = require("express-session");
 /*---Controllers---*/
 const AdminController = require("./controllers/AdminController");
 const UserController = require("./controllers/UserController");
+const CategoryController = require("./controllers/CategoryController");
+const VendorController = require("./controllers/VendorController");
 /*-----------------*/
 const { body, validationResult } = require("express-validator");
 const bodyParser = require("body-parser");
@@ -52,3 +54,7 @@ app.get("/login", (req, res) => {
 app.use("/admin", AdminController);
 /*---User's Routes---*/
 app.use("/user", UserController);
+/*---Category's Routes---*/
+app.use("/category", CategoryController);
+/*---Vendor's Routes---*/
+app.use("/vendor", VendorController);
