@@ -5,10 +5,10 @@ const fs = require("fs");
 
 module.exports = {
     "development": {
-        "username": process.env.DB_USER,
-        "password": process.env.DB_PASSWORD,
-        "database": process.env.DB_NAME,
-        "host": "127.0.0.1",
+        "username": "pujtc31r7wm6ypgc",
+        "password": "l1h2xtqbupdpf4me",
+        "database": "z32pqxdo95j2cysr",
+        "host": "dcrhg4kh56j13bnu.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
         "dialect": "mysql"
     },
     "test": {
