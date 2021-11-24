@@ -9,7 +9,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       product_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
         references: {
@@ -18,7 +17,6 @@ module.exports = {
         }
       },
       category_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
         references: {

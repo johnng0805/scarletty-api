@@ -32,8 +32,8 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE"
     });
     Product.belongsToMany(models.Category, {
-      foreignKey: "product_id",
-      through: models.Product_Category
+      through: models.Product_Category,
+      foreignKey: "product_id"
     });
     Product.hasMany(models.Product_Image, {
       onDelete: "cascade"

@@ -1,7 +1,7 @@
 const express = require("express");
-const { body, validationResults } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 const Product = require("../models").Product;
-const Category = require("../models").Product_Category;
+const Category = require("../models").Category;
 
 const router = express.Router();
 
@@ -65,7 +65,7 @@ router.get("/info/category/:id", async (req, res) => {
     }
 
     try {
-        const products = await Product.findall({
+        const products = await Product.findAll({
             include: [{
                 model: Category,
                 where: {
@@ -79,5 +79,83 @@ router.get("/info/category/:id", async (req, res) => {
         return res.sendStatus(500);
     }
 });
+
+router.post("/info",
+    body("vendor_id").notEmpty().isAlphanumeric(),
+    body("category_id").notEmpty().isAlphanumeric(),
+    body("name").notEmpty().matches(/^[a-zA-Z0-9 ]+$/),
+    body("price").notEmpty().isAlphanumeric(),
+    body("description").notEmpty().matches(/^[a-zA-Z0-9,.:;'"()% ]/),
+    body("discount").notEmpty().isAlphanumeric(),
+    body("in_stock").isAlphanumeric(),
+    async (req, res) => {
+        const err = validationResult(req);
+        if (!err.isEmpty()) {
+            return res.status(400).send(err);
+        }
+
+        const { vendor_id, category_id, name, price, description, discount, in_stock } = req.body;
+
+        try {
+            const product = await Product.create({
+                vendor_id: vendor_id,
+                name: name,
+                price: price,
+                description: description,
+                discount: discount,
+                in_stock: in_stock
+            });
+            const category = await Category.findOne({
+                where: {
+                    id: category_id
+                }
+            });
+            if (category) {
+                product.addCategory(category);
+                res.status(200).send(product);
+            } else {
+                res.sendStatus(500);
+            }
+        } catch (err) {
+            console.log(err);
+            return res.sendStatus(500);
+        }
+    });
+
+router.put("/info/:id",
+    body("name").notEmpty().matches(/^[a-zA-Z0-9 ]+$/),
+    body("price").notEmpty().isAlphanumeric(),
+    body("description").notEmpty().matches(/^[a-zA-Z0-9,.:;'"()% ]/),
+    body("discount").notEmpty().isAlphanumeric(),
+    body("in_stock").isAlphanumeric(),
+    async (req, res) => {
+        const err = validationResult(req);
+        if (!err.isEmpty()) {
+            return res.status(400).send(err);
+        }
+        if (checkIsNaN(req.params.id)) {
+            return res.sendStatus(404);
+        }
+        const { name, price, description, discount, in_stock } = req.body;
+        const id = req.params.id;
+
+        try {
+            await Product.update({
+                name: name,
+                price: price,
+                description: description,
+                discount: discount,
+                in_stock: in_stock
+            }, {
+                where: {
+                    id: id
+                }
+            });
+            res.sendStatus(200);
+        } catch (err) {
+            console.log(err);
+            return res.sendStatus(500);
+        }
+    });
 
 module.exports = router;
