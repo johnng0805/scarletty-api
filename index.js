@@ -8,6 +8,7 @@ const AdminController = require("./controllers/AdminController");
 const UserController = require("./controllers/UserController");
 const CategoryController = require("./controllers/CategoryController");
 const VendorController = require("./controllers/VendorController");
+const ProductController = require("./controllers/ProductController");
 /*-----------------*/
 const { body, validationResult } = require("express-validator");
 const bodyParser = require("body-parser");
@@ -58,3 +59,5 @@ app.use("/user", UserController);
 app.use("/category", CategoryController);
 /*---Vendor's Routes---*/
 app.use("/vendor", VendorController);
+/*---Product's Routes---*/
+app.use("/product/", ProductController);
