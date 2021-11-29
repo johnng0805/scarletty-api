@@ -9,6 +9,7 @@ const UserController = require("./controllers/UserController");
 const CategoryController = require("./controllers/CategoryController");
 const VendorController = require("./controllers/VendorController");
 const ProductController = require("./controllers/ProductController");
+const ProductImageController = require("./controllers/ProductImageController");
 /*-----------------*/
 const { body, validationResult } = require("express-validator");
 const bodyParser = require("body-parser");
@@ -18,7 +19,7 @@ dotenv.config();
 const app = express();
 
 app.set("view engine", "pug");
-app.use("/static", express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 // app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -60,4 +61,6 @@ app.use("/category", CategoryController);
 /*---Vendor's Routes---*/
 app.use("/vendor", VendorController);
 /*---Product's Routes---*/
-app.use("/product/", ProductController);
+app.use("/product", ProductController);
+/*---Product_Image's Routes---*/
+app.use("/image", ProductImageController);
