@@ -2,8 +2,8 @@ const Sequelize = require('sequelize');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const sequelize = new Sequelize("z32pqxdo95j2cysr", "pujtc31r7wm6ypgc", "l1h2xtqbupdpf4me", {
-    host: "dcrhg4kh56j13bnu.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
     dialect: 'mysql',
     operatoreAliases: false,
     pool: {
